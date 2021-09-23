@@ -1,15 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import Alert from "../Alert/Alert";
+
+
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 const SignUp = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+  const { signup} = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const history = useHistory()
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("Passwords do not match");
+    }
+    try {
+      setError("");
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value);
+      history.push("/")
+    } catch {
+      setError("Failed to create an account");
+    }
+    setLoading(false);
+  }
   return (
     <div>
       <section className="flex justify-center items-center text-gray-600 body-font sm:bg-red-300 bg-green-300 md:bg-yellow-300 lg:bg-blue-700 h-screen sm:h-auto md:h-screen lg:h-screen lg:px-10">
         <div className="container flex px-5 py-8 md:flex-row flex-col items-center ">
-          <div className="lg:max-w-lg hidden sm:block md:block lg:w-full md:w-full sm:w-3/4 w-5/6 mb-10 md:mb-0 lg:p-4 md:p-4" >
+          <div className="lg:max-w-lg hidden sm:block md:block lg:w-full md:w-full sm:w-3/4 w-5/6 mb-10 md:mb-0 lg:p-4 md:p-4">
             <img
               className="object-cover object-center rounded p-2 md:w-full"
               alt="hero"
@@ -20,7 +46,8 @@ const SignUp = () => {
             <h2 className="text-gray-900 text-2xl md:text-white lg:text-green mb-1 text-center   font-medium title-font">
               SIGN UP
             </h2>
-            <div className="w-full lg:w-3/4">
+            {error &&  <Alert errmsg={error}></Alert> }
+            <form onSubmit={handleSubmit} className="w-full lg:w-3/4">
               <div className="relative my-4">
                 <label for="name" className="leading-7 text-md text-gray-600">
                   Email
@@ -52,13 +79,13 @@ const SignUp = () => {
                 />
               </div>
 
-              <button className="text-white bg-indigo-500 border-0 py-2 px-6 my-2  focus:outline-none hover:bg-indigo-600 rounded text-lg w-full">
-                Button
+              <button disabled={loading} className="text-white bg-indigo-500 border-0 py-2 px-6 my-2  focus:outline-none hover:bg-indigo-600 rounded text-lg w-full">
+                Sign Up 
               </button>
+            </form>
               <p className="text-md text-center border-t-2 border-black py-2 text-gray-500 mt-3">
-                Already have an account ? Log In
+              Already have an account ? <Link to="/login">Log In </Link>
               </p>
-            </div>
           </div>
         </div>
       </section>

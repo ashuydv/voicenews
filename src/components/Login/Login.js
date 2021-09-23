@@ -27,16 +27,17 @@ const Login = () => {
   }
   return (
     <div>
-      <section className="flex justify-center items-center text-gray-600 body-font sm:bg-red-300 bg-green-300 md:bg-yellow-300 lg:bg-blue-700 h-screen sm:h-auto md:h-screen lg:h-screen lg:px-10">
+      <section className="flex justify-center items-center text-gray-700 body-font sm:bg-red-300 bg-green-300 md:bg-yellow-300 lg:bg-purple-800 h-screen sm:h-auto md:h-screen lg:h-screen lg:px-10">
         <div className="container flex px-5 py-8 md:flex-row flex-col items-center ">
           <div className="lg:max-w-lg hidden sm:block md:block lg:w-full md:w-full sm:w-3/4 w-5/6 mb-10 md:mb-0 lg:p-4 md:p-4">
             <img
               className="object-cover object-center rounded p-2 md:w-full"
               alt="hero"
-              src="https://pathwayport.com/saasland/images/login@4x.png"
+              // src="https://pathwayport.com/saasland/images/login@4x.png"
+              src="https://bxminers.com/assets/img/signup-left.png"
             />
           </div>
-          <div className="md:w-full my-auto bg-white flex justify-center items-center flex-col  p-2 md:ml-auto bg-blue-200 lg:w-1/2 md:py-8">
+          <div className="md:w-full my-auto  flex justify-center items-center flex-col  p-2 md:ml-auto bg-purple-300 lg:w-1/2 md:py-8">
             <h2 className="text-gray-900 text-2xl md:text-white lg:text-green mb-1 text-center   font-medium title-font">
               LOGIN 
             </h2>

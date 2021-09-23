@@ -21,7 +21,7 @@ function Home() {
     }
   return (
     <div>
-      <section className="flex justify-center items-center text-gray-600 body-font sm:bg-red-300 bg-green-300 md:bg-yellow-300 lg:bg-blue-700 h-screen sm:h-auto md:h-screen lg:h-screen lg:px-10">
+      <section className="flex justify-center items-center text-gray-600 body-font sm:bg-red-300 bg-green-300 md:bg-yellow-300 lg:bg-gray-700 h-screen sm:h-auto md:h-screen lg:h-screen lg:px-10">
         <div className="container flex px-5 py-8 md:flex-row flex-col items-center ">
           <div className="lg:max-w-lg hidden sm:block md:block lg:w-full md:w-full sm:w-3/4 w-5/6 mb-10 md:mb-0 lg:p-4 md:p-4">
             <img

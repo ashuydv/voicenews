@@ -39,7 +39,8 @@ const SignUp = () => {
             <img
               className="object-cover object-center rounded p-2 md:w-full"
               alt="hero"
-              src="https://pathwayport.com/saasland/images/login@4x.png"
+              // src="https://pathwayport.com/saasland/images/login@4x.png"
+              src="https://www.oots.in/frontend/images/registration-pro.png"
             />
           </div>
           <div className="md:w-full my-auto bg-white flex justify-center items-center flex-col  p-2 md:ml-auto bg-blue-200 lg:w-1/2 md:py-8">

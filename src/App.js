@@ -6,12 +6,13 @@ import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
 import Home from "./components/Home/Home"
 import PrivateRoute from "./components/PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import HomePage from "./components/Home/HomePage";
 function App() {
   return (
     <Router>
       <AuthProvider>
         <Switch>
-          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/" component={HomePage} />
           <PrivateRoute path="/update-profile" component={UpdateProfile} />
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />

@@ -1,0 +1,8 @@
+* {
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px !important;
+    color: white;
+}

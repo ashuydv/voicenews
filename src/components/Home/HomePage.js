@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 // import Alert from "../Alert/Alert";
 import "./HomPage.css";
-import { FaChevronUp } from "react-icons/fa";
+// import { FaChevronUp } from "react-icons/fa";
 import logo from "./logo.png";
-import ScrollToTop from "react-scroll-to-top";
+// import ScrollToTop from "react-scroll-to-top";
 import { FaUserEdit } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { Link as ScrollLink } from "react-scroll";
@@ -16,6 +16,8 @@ const HomePage = () => {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
   const history = useHistory();
+
+  const [navbar, setNavbar] = useState(false)
 
   async function handleLogOut() {
     setError("");
@@ -27,10 +29,21 @@ const HomePage = () => {
     }
   }
 
+  const changeBg = () =>{
+    if(window.scrollY >= 70){
+      setNavbar(true);
+    }
+    else{
+      setNavbar(false);
+    }
+  }
+
+  window.addEventListener('scroll',changeBg)
+
   return (
     <div>
-      <nav className="bg-gray-900">
-        <div class="logo">
+      <nav className={navbar ? 'navbar active' : 'navbar'}>
+        <div class="logo bg-white rounded-full" >
           <img src={logo} alt="" className="w-14 h-14 m-0" />
           <span>{error}</span>
         </div>
@@ -78,6 +91,15 @@ const HomePage = () => {
             >
               Contact
             </ScrollLink>
+          </li>
+          <li>
+            <Link to="/news-cards">
+              <button class="bg-purple-500 text-gray-200 font-semibold py-1 px-6 rounded inline-flex items-center">
+                <span title="CLick to edit profile" class="mr-1">
+                  News App 
+                </span>
+              </button>
+            </Link>
           </li>
           <li>
             <Link to="/update-profile">
@@ -466,7 +488,7 @@ const HomePage = () => {
             </a>
           </p>
         </div>
-        <ScrollToTop
+        {/* <ScrollToTop
           smooth
           component={<FaChevronUp />}
           style={{
@@ -474,8 +496,9 @@ const HomePage = () => {
             background: "#8b5cf6",
             padding: "12px",
             boxShadow: "0px 0px 5px rgba(0,0,0,.5)",
+            marginRight:"70px"
           }}
-        />
+        /> */}
       </footer>
     </div>
   );

@@ -1,0 +1,10 @@
+.c-container{
+    padding: 5% 5%;
+    width: 100%;
+    margin: 0;
+}
+
+.info-card{
+    height: 50vh !important;
+    /* background-color: rgb(118, 211, 172) !important; */
+}

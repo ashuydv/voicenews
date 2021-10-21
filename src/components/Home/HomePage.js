@@ -12,6 +12,9 @@ import { FaUserEdit } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { Link as ScrollLink } from "react-scroll";
 import profile1 from "./../../images/profile1.png";
+import { TiWeatherPartlySunny } from "react-icons/ti";
+import { BsToggleOff } from "react-icons/bs";
+import { AiOutlineFileSearch } from "react-icons/ai";
 const HomePage = () => {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
@@ -128,23 +131,22 @@ const HomePage = () => {
           <div class="container mx-auto flex px-5 py-32 md:hscreen lg:h-screen md:flex-row flex-col items-center">
             <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
               <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
-                Before they sold out
+              What is a voice assistant?
                 <br class="hidden lg:inline-block" />
-                readymade gluten
+                
               </h1>
               <p class="mb-8 leading-relaxed">
-                Copper mug try-hard pitchfork pour-over freegan heirloom neutra
-                air plant cold-pressed tacos poke beard tote bag. Heirloom echo
-                park mlkshk tote bag selvage hot chicken authentic tumeric
-                truffaut hexagon try-hard chambray.
+              A voice assistant is a digital assistant that uses voice recognition, language processing algorithms, and voice synthesis to listen to specific voice commands and return relevant information or perform specific functions as requested by the user.
+
+Button
               </p>
               <div class="flex justify-center">
+              <Link to="/news-cards">
                 <button class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">
-                  Button
+                  TRY NOW
                 </button>
-                <button class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">
-                  Button
-                </button>
+              </Link>
+                
               </div>
             </div>
             <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
@@ -166,13 +168,9 @@ const HomePage = () => {
           <div class="container px-5 py-24 mx-auto">
             <div class="text-center mb-20">
               <h1 class="sm:text-3xl text-2xl font-medium title-font text-white mb-4">
-                Our Features
+              Features of Voice Assistants        
               </h1>
-              <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-400 text-opacity-80">
-                Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                taxidermy. Gastropub indxgo juice poutine, ramps microdosing
-                banh mi pug.
-              </p>
+           
               <div class="flex mt-6 justify-center">
                 <div class="w-16 h-1 rounded-full bg-purple-500 inline-flex"></div>
               </div>
@@ -180,80 +178,47 @@ const HomePage = () => {
             <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
               <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
                 <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-800 text-purple-400 mb-5 flex-shrink-0">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-10 h-10"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                  </svg>
+                  
+                    <TiWeatherPartlySunny className="text-7xl"/>
+                  
                 </div>
                 <div class="flex-grow">
                   <h2 class="text-white text-lg title-font font-medium mb-3">
-                    Shooting Stars
+                  Check the weather
                   </h2>
                   <p class="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine, ramps
-                    microdosing banh mi pug VHS try-hard.
+                  With Alan AI, you can listen to the current weather and upcoming forecast for your location using only your voice.
                   </p>
+                 
                 </div>
               </div>
               <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
                 <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-800 text-purple-400 mb-5 flex-shrink-0">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-10 h-10"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="6" cy="6" r="3"></circle>
-                    <circle cx="6" cy="18" r="3"></circle>
-                    <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                  </svg>
+                  <BsToggleOff className="text-7xl"/>
                 </div>
                 <div class="flex-grow">
                   <h2 class="text-white text-lg title-font font-medium mb-3">
-                    The Catalyzer
+                  Turn on/off connected smart devices
                   </h2>
                   <p class="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine, ramps
-                    microdosing banh mi pug VHS try-hard.
+                  This helps you use voice commands for the device instead of the plug or switch.
+                  Your voice commands will turn your switch or plug on or off.
                   </p>
+                 
                 </div>
               </div>
               <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
                 <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-800 text-purple-400 mb-5 flex-shrink-0">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-10 h-10"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
+                 <AiOutlineFileSearch className="text-7xl"/>
                 </div>
                 <div class="flex-grow">
                   <h2 class="text-white text-lg title-font font-medium mb-3">
-                    Neptune
+                  Search databases
                   </h2>
                   <p class="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine, ramps
-                    microdosing banh mi pug VHS try-hard.
+                  Voice search, also called voice-enabled, allows the user to use a voice command to search the Internet, a website, or an app.
                   </p>
+                  
                 </div>
               </div>
             </div>
@@ -284,22 +249,15 @@ const HomePage = () => {
             </div>
             <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
               <h1 class="text-4xl mb-4 text-white">
-                Before they sold out
+              Alan
                 <br class="hidden lg:inline-block" />
-                readymade gluten
               </h1>
               <p class="mb-8 leading-relaxed">
-                Copper mug try-hard pitchfork pour-over freegan heirloom neutra
-                air plant cold-pressed tacos poke beard tote bag. Heirloom echo
-                park mlkshk tote bag selvage hot chicken authentic tumeric
-                truffaut hexagon try-hard chambray.
+              In 2017 Alan set out to take voice assistants to the next level, by enabling voice AI for all applications. Using domain specific language models and contextual understanding, Alan is focused on creating a new generation of Enterprise Voice AI applications. By using the Alan Platform, developers are able to take control of voice, and create an effective workflow that best fits their users with the help of vocal commands.
               </p>
               <div class="flex justify-center">
                 <button class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">
-                  Button
-                </button>
-                <button class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">
-                  Button
+                  LEARN MORE
                 </button>
               </div>
             </div>

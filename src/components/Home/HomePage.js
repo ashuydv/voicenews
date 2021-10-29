@@ -17,6 +17,9 @@ import { FaRegHandshake } from "react-icons/fa";
 
 import { Link as ScrollLink } from "react-scroll";
 import profile1 from "./../../images/profile1.png";
+import { TiWeatherPartlySunny } from "react-icons/ti";
+import { BsToggleOff } from "react-icons/bs";
+import { AiOutlineFileSearch } from "react-icons/ai";
 const HomePage = () => {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
@@ -233,6 +236,7 @@ const HomePage = () => {
                     We provide user friendly UI which is very simple and easy to
                     use.Its very easy to locate different tools and options.
                   </p>
+                 
                 </div>
               </div>
               <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
@@ -247,6 +251,7 @@ const HomePage = () => {
                     Get the latest news and stay updated. We use News API to
                     fetch all the news.
                   </p>
+                 
                 </div>
               </div>
               <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
@@ -262,6 +267,7 @@ const HomePage = () => {
                     Voice search, also called voice-enabled, allows the user to
                     use a voice command to search various kinds of news.
                   </p>
+                  
                 </div>
               </div>
             </div>

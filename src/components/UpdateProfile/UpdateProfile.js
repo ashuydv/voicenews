@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import Alert from "../Alert/Alert";
+// import Alert from "../Alert/Alert";
 
 const UpdateProfile = () => {
   const emailRef = useRef();
@@ -17,7 +17,8 @@ const UpdateProfile = () => {
   function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match");
+      // return setError("Passwords do not match");
+      alert("Password do not match")
     }
 
     const promises = [];
@@ -35,7 +36,8 @@ const UpdateProfile = () => {
         history.push("/");
       })
       .catch(() => {
-        setError("Failed to update account");
+        // setError("Failed to update account");
+        alert("Failed to update account")
       })
       .finally(() => {
         setLoading(false);
@@ -52,11 +54,11 @@ const UpdateProfile = () => {
               src="https://pathwayport.com/saasland/images/login@4x.png"
             />
           </div>
-          <div className="md:w-full my-auto bg-white flex justify-center items-center flex-col  p-2 md:ml-auto bg-gray-800 lg:w-1/2 md:py-8">
+          <div className="md:w-full my-auto flex justify-center items-center flex-col  p-2 md:ml-auto bg-gray-800 lg:w-1/2 md:py-8">
             <h2 className="text-gray-900 text-2xl md:text-white lg:text-green mb-1 text-center   font-medium title-font">
               UPDATE PROFILE
             </h2>
-            {error && <Alert errmsg={error}></Alert>}
+            {/* {error && <Alert errmsg={error}></Alert>} */}
             <form onSubmit={handleSubmit} className="w-full lg:w-3/4">
               <div className="relative my-4">
                 <label for="name" className="leading-7 text-md text-white">

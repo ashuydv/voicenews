@@ -31,9 +31,9 @@ const SearchInfo = () => {
         <div className="flex flex-col rounded-lg shadow-md  w-full m-6 text-center hover:bg-purple-600 transition-all duration-500 cursor-pointer sm:w-52 py-4 bg-purple-500 md:w-1/4">
             <h3 className="mb-4">News by Sources</h3>
             <h3 className="font-bold">Sources:</h3>
-            <p>CNN, Wired, BBC News, Time, IGN, Buzzfeed, ABC News...</p>
+            <p>Wired, BBC News, ABC News Time, IGN, Buzzfeed ...</p>
             <h3 className="italic">Try Saying:</h3>
-            <p className="italic">Give me the news from CNN</p>
+            <p className="italic">Give me the news from BBC News</p>
         </div>
       </div>
     </div>

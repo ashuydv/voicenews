@@ -3,13 +3,18 @@ import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-// import Alert from "../Alert/Alert";
+
 import "./HomPage.css";
-// import { FaChevronUp } from "react-icons/fa";
+
 import logo from "./logo.png";
-// import ScrollToTop from "react-scroll-to-top";
+
 import { FaUserEdit } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
+
+import { RiTeamFill } from "react-icons/ri";
+import { AiOutlineFieldTime } from "react-icons/ai";
+import { FaRegHandshake } from "react-icons/fa";
+
 import { Link as ScrollLink } from "react-scroll";
 import profile1 from "./../../images/profile1.png";
 const HomePage = () => {
@@ -17,7 +22,7 @@ const HomePage = () => {
   const { currentUser, logout } = useAuth();
   const history = useHistory();
 
-  const [navbar, setNavbar] = useState(false)
+  const [navbar, setNavbar] = useState(false);
 
   async function handleLogOut() {
     setError("");
@@ -29,32 +34,74 @@ const HomePage = () => {
     }
   }
 
-  const changeBg = () =>{
-    if(window.scrollY >= 70){
+  const changeBg = () => {
+    if (window.scrollY >= 70) {
       setNavbar(true);
-    }
-    else{
+    } else {
       setNavbar(false);
     }
-  }
+  };
 
-  window.addEventListener('scroll',changeBg)
+  window.addEventListener("scroll", changeBg);
+
+  //Contact
+  const [userData, setuserData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  let name, value;
+  const postUserData = (event) => {
+    name = event.target.name;
+    value = event.target.value;
+
+    setuserData({ ...userData, [name]: value });
+  };
+
+  // Connect with fireBase
+
+  const submitData = async (event) => {
+    event.preventDefault();
+    const { name, email, message } = userData;
+    const res = await fetch(
+      "https://news-application-4947b-default-rtdb.firebaseio.com/userDataRecord.json",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
+      }
+    );
+
+    if (res) {
+      alert(
+        "Your message has been sent Succesfully!! ThankYou for Your Valuable Response!!"
+      );
+    } else {
+      alert("Please fill the Data correctly!!");
+    }
+  };
 
   return (
     <div>
-      <nav className={navbar ? 'navbar active' : 'navbar'}>
-        <div class="logo bg-white rounded-full" >
+      <nav className={navbar ? "navbar active" : "navbar"}>
+        <div className="logo bg-white rounded-full">
           <img src={logo} alt="" className="w-14 h-14 m-0" />
           <span>{error}</span>
         </div>
         <input type="checkbox" id="click" />
-        <label for="click" class="menu-btn">
-          <i class="fas fa-bars"></i>
+        <label for="click" className="menu-btn">
+          <i className="fas fa-bars"></i>
         </label>
         <ul>
           <li className="stroke">
             <ScrollLink
-              class="nav-item mr-5 hover:bg-purple-500"
+              className="nav-item mr-5 hover:bg-purple-500"
               to="features"
               smooth={true}
               duration={100}
@@ -64,7 +111,7 @@ const HomePage = () => {
           </li>
           <li>
             <ScrollLink
-              class="nav-item mr-5 hover:bg-purple-500"
+              className="nav-item mr-5 hover:bg-purple-500"
               to="about"
               smooth={true}
               duration={150}
@@ -74,7 +121,7 @@ const HomePage = () => {
           </li>
           <li>
             <ScrollLink
-              class="nav-item mr-5 hover:bg-purple-500"
+              className="nav-item mr-5 hover:bg-purple-500"
               to="team"
               smooth={true}
               duration={200}
@@ -84,7 +131,7 @@ const HomePage = () => {
           </li>
           <li>
             <ScrollLink
-              class="nav-item mr-5 hover:bg-purple-500"
+              className="nav-item mr-5 hover:bg-purple-500"
               to="contact"
               smooth={true}
               duration={250}
@@ -94,25 +141,26 @@ const HomePage = () => {
           </li>
           <li>
             <Link to="/news-cards">
-              <button class="bg-purple-500 text-gray-200 font-semibold py-1 px-6 rounded inline-flex items-center">
-                <span title="CLick to edit profile" class="mr-1">
-                  News App 
-                </span>
+              <button className="bg-purple-500 text-gray-200 font-semibold py-1 px-6 rounded inline-flex items-center">
+                <span className="mr-1">News App</span>
               </button>
             </Link>
           </li>
           <li>
             <Link to="/update-profile">
-              <button class="bg-purple-500 text-gray-200 font-semibold py-1 px-6 rounded inline-flex items-center">
-                <span title="CLick to edit profile" class="mr-1">
-                  <div className="flex items-center">{currentUser.email}<FaUserEdit className="ml-3" /></div>
+              <button className="bg-purple-500 text-gray-200 font-semibold py-1 px-6 rounded inline-flex items-center">
+                <span title="Click to edit profile" className="mr-1">
+                  <div className="flex items-center">
+                    {currentUser.email}
+                    <FaUserEdit className="ml-3" />
+                  </div>
                 </span>
               </button>
             </Link>
           </li>
           <li>
             <button
-              class="inline-flex items-center text-white bg-red-500  border-0 py-1 px-3 focus:outline-none  rounded  mt-4 md:mt-0"
+              className="inline-flex items-center text-white bg-red-500  border-0 py-1 px-3 focus:outline-none  rounded  mt-4 md:mt-0"
               onClick={handleLogOut}
             >
               Logout
@@ -128,23 +176,22 @@ const HomePage = () => {
           <div class="container mx-auto flex px-5 py-32 md:hscreen lg:h-screen md:flex-row flex-col items-center">
             <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
               <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
-                Before they sold out
+                What is a voice assistant?
                 <br class="hidden lg:inline-block" />
-                readymade gluten
               </h1>
               <p class="mb-8 leading-relaxed">
-                Copper mug try-hard pitchfork pour-over freegan heirloom neutra
-                air plant cold-pressed tacos poke beard tote bag. Heirloom echo
-                park mlkshk tote bag selvage hot chicken authentic tumeric
-                truffaut hexagon try-hard chambray.
+                A voice assistant is a digital assistant that uses voice
+                recognition, language processing algorithms, and voice synthesis
+                to listen to specific voice commands and return relevant
+                information or perform specific functions as requested by the
+                user. Button
               </p>
               <div class="flex justify-center">
-                <button class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">
-                  Button
-                </button>
-                <button class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">
-                  Button
-                </button>
+                <Link to="/news-cards">
+                  <button class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">
+                    TRY NOW
+                  </button>
+                </Link>
               </div>
             </div>
             <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
@@ -166,13 +213,9 @@ const HomePage = () => {
           <div class="container px-5 py-24 mx-auto">
             <div class="text-center mb-20">
               <h1 class="sm:text-3xl text-2xl font-medium title-font text-white mb-4">
-                Our Features
+                Features of News App
               </h1>
-              <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-400 text-opacity-80">
-                Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                taxidermy. Gastropub indxgo juice poutine, ramps microdosing
-                banh mi pug.
-              </p>
+
               <div class="flex mt-6 justify-center">
                 <div class="w-16 h-1 rounded-full bg-purple-500 inline-flex"></div>
               </div>
@@ -180,79 +223,44 @@ const HomePage = () => {
             <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
               <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
                 <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-800 text-purple-400 mb-5 flex-shrink-0">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-10 h-10"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                  </svg>
+                  <FaRegHandshake className="text-7xl" />
                 </div>
                 <div class="flex-grow">
                   <h2 class="text-white text-lg title-font font-medium mb-3">
-                    Shooting Stars
+                    User Friendly
                   </h2>
                   <p class="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine, ramps
-                    microdosing banh mi pug VHS try-hard.
+                    We provide user friendly UI which is very simple and easy to
+                    use.Its very easy to locate different tools and options.
                   </p>
                 </div>
               </div>
               <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
                 <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-800 text-purple-400 mb-5 flex-shrink-0">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-10 h-10"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="6" cy="6" r="3"></circle>
-                    <circle cx="6" cy="18" r="3"></circle>
-                    <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                  </svg>
+                  <AiOutlineFieldTime className="text-7xl" />
                 </div>
                 <div class="flex-grow">
                   <h2 class="text-white text-lg title-font font-medium mb-3">
-                    The Catalyzer
+                    Fetch News from real time API's
                   </h2>
                   <p class="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine, ramps
-                    microdosing banh mi pug VHS try-hard.
+                    Get the latest news and stay updated. We use News API to
+                    fetch all the news.
                   </p>
                 </div>
               </div>
               <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
                 <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-800 text-purple-400 mb-5 flex-shrink-0">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-10 h-10"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
+                  {/* <AiOutlineFileSearch className="text-7xl" /> */}
+                  <RiTeamFill className="text-7xl" />
                 </div>
                 <div class="flex-grow">
                   <h2 class="text-white text-lg title-font font-medium mb-3">
-                    Neptune
+                    Provide Human like interactions
                   </h2>
                   <p class="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine, ramps
-                    microdosing banh mi pug VHS try-hard.
+                    Voice search, also called voice-enabled, allows the user to
+                    use a voice command to search various kinds of news.
                   </p>
                 </div>
               </div>
@@ -284,23 +292,24 @@ const HomePage = () => {
             </div>
             <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
               <h1 class="text-4xl mb-4 text-white">
-                Before they sold out
+                Alan
                 <br class="hidden lg:inline-block" />
-                readymade gluten
               </h1>
               <p class="mb-8 leading-relaxed">
-                Copper mug try-hard pitchfork pour-over freegan heirloom neutra
-                air plant cold-pressed tacos poke beard tote bag. Heirloom echo
-                park mlkshk tote bag selvage hot chicken authentic tumeric
-                truffaut hexagon try-hard chambray.
+                In 2017 Alan set out to take voice assistants to the next level,
+                by enabling voice AI for all applications. Using domain specific
+                language models and contextual understanding, Alan is focused on
+                creating a new generation of Enterprise Voice AI applications.
+                By using the Alan Platform, developers are able to take control
+                of voice, and create an effective workflow that best fits their
+                users with the help of vocal commands.
               </p>
               <div class="flex justify-center">
-                <button class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">
-                  Button
-                </button>
-                <button class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">
-                  Button
-                </button>
+                <Link to="/news-cards">
+                  <button class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">
+                    Try Now
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -402,85 +411,105 @@ const HomePage = () => {
 
         {/* contact */}
         <section
-          class="text-gray-600 bg-gray-900 body-font relative"
+          className="text-gray-600 bg-gray-900 body-font relative"
           id="contact"
         >
-          <div class="container px-5 py-24 mx-auto">
-            <div class="text-center mb-20">
-              <h1 class="sm:text-3xl text-2xl font-medium title-font text-white mb-4">
+          <div className="container px-5 py-24 mx-auto">
+            <div className="text-center mb-20">
+              <h1 className="sm:text-3xl text-2xl font-medium title-font text-white mb-4">
                 Contact Us
               </h1>
-              <div class="flex mt-6 justify-center">
-                <div class="w-16 h-1 rounded-full bg-purple-500 inline-flex"></div>
+              <div className="flex mt-6 justify-center">
+                <div className="w-16 h-1 rounded-full bg-purple-500 inline-flex"></div>
               </div>
             </div>
-            <div class="lg:w-1/2 md:w-2/3 mx-auto">
-              <div class="flex flex-wrap -m-2">
-                <div class="p-2 w-full sm:w-1/2 md:1/2 lg:1/2">
-                  <div class="relative">
-                    <label for="name" class="leading-7 text-md text-white">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
+            <div className="lg:w-1/2 md:w-2/3 mx-auto">
+              <form method="POST">
+                <div className="flex flex-wrap -m-2">
+                  <div className="p-2 w-full sm:w-1/2 md:1/2 lg:1/2">
+                    <div className="relative">
+                      <label
+                        for="name"
+                        className="leading-7 text-md text-white"
+                      >
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        value={userData.name}
+                        onChange={postUserData}
+                      />
+                    </div>
+                  </div>
+                  <div className="p-2 w-full sm:w-1/2 md:1/2 lg:1/2">
+                    <div className="relative">
+                      <label
+                        for="email"
+                        className="leading-7 text-md text-white"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        value={userData.email}
+                        onChange={postUserData}
+                      />
+                    </div>
+                  </div>
+                  <div className="p-2 w-full">
+                    <div className="relative">
+                      <label
+                        for="message"
+                        className="leading-7 text-md text-white"
+                      >
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                        value={userData.message}
+                        onChange={postUserData}
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className="p-2 w-full">
+                    <button
+                      className="flex mx-auto text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg"
+                      onClick={submitData}
+                    >
+                      Submit
+                    </button>
                   </div>
                 </div>
-                <div class="p-2 w-full sm:w-1/2 md:1/2 lg:1/2">
-                  <div class="relative">
-                    <label for="email" class="leading-7 text-md text-white">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                  </div>
-                </div>
-                <div class="p-2 w-full">
-                  <div class="relative">
-                    <label for="message" class="leading-7 text-md text-white">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                    ></textarea>
-                  </div>
-                </div>
-                <div class="p-2 w-full">
-                  <button class="flex mx-auto text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">
-                    Button
-                  </button>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </section>
         {/* contact us */}
       </main>
-      <footer class="text-gray-400 bg-gray-800 body-font">
-        <div class="container px-5 py-4 mx-auto flex items-center sm:flex-row flex-col">
-          <div class="flex title-font font-medium items-center text-white  md:mb-0">
+      <footer className="text-gray-400 bg-gray-800 body-font">
+        <div className="container px-5 py-4 mx-auto flex items-center sm:flex-row flex-col">
+          <div className="flex title-font font-medium items-center text-white  md:mb-0">
             <ScrollLink
               to="home"
-              class="flex items-center justify-center rounded-full flex-shrink-0"
+              className="flex items-center justify-center rounded-full flex-shrink-0"
             >
               <img src={logo} alt="" className="w-14 h-14 m-0 logo" />
-              <span class="ml-3 text-xl"></span>
+              <span className="ml-3 text-xl"></span>
             </ScrollLink>
           </div>
-          <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">
-            © 2020 Tailblocks —
+          <p className="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">
+            © 2021 AI NEWS APPLICATION —
             <a
               href="https://twitter.com/knyttneve"
-              class="text-gray-500 ml-1"
+              className="text-gray-500 ml-1"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -505,4 +534,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-

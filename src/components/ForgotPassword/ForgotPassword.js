@@ -21,9 +21,11 @@ const ForgotPassword = () => {
       setError("");
       setLoading(true);
       await resetPassword(emailRef.current.value);
-      setMessage("Check your inbox for further instructions")
+      // setMessage("Check your inbox for further instructions")
+      alert("Check your inbox for further instructions");
     } catch {
-      setError("Failed to reset password");
+      // setError("Failed to reset password");
+      alert("Failed to reset password")
     }
     setLoading(false);
   }
@@ -39,12 +41,12 @@ const ForgotPassword = () => {
               src={fpImg}
             />
           </div>
-          <div className="md:w-full my-auto bg-white flex justify-center items-center flex-col  p-2 md:ml-auto bg-gray-800 lg:w-1/2 md:py-8">
+          <div className="md:w-full my-auto flex justify-center items-center flex-col  p-2 md:ml-auto bg-gray-800 lg:w-1/2 md:py-8">
             <h2 className="text-gray-900 text-2xl md:text-white lg:text-green mb-1 text-center   font-medium title-font">
               RESET PASSWORD 
             </h2>
-            {error &&  <Alert errmsg={error}></Alert> }
-            {message && <Alert>{message}</Alert>}
+            {/* {error &&  <Alert errmsg={error}></Alert> }
+            {message && <Alert>{message}</Alert>} */}
             <form onSubmit={handleSubmit} className="w-full lg:w-3/4">
               <div className="relative my-4">
                 <label for="name" className="leading-7 text-md text-white">

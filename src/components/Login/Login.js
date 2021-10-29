@@ -3,26 +3,27 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useHistory } from "react-router";
-import Alert from "../Alert/Alert";
+// import Alert from "../Alert/Alert";
 import loginImg from "../../images/login.png"
 
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const { login } = useAuth();
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      setError("");
+      // setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       history.push("/");
     } catch {
-      setError("Failed to login");
+      // setError("Failed to login");
+      alert("Failed to login , Please check email and password .");
     }
     setLoading(false);
   }
@@ -42,7 +43,8 @@ const Login = () => {
             <h2 className="text-gray-900 text-2xl md:text-white lg:text-green mb-1 text-center   font-medium title-font">
               LOGIN 
             </h2>
-            {error &&  <Alert errmsg={error}></Alert> }
+            {/* {error &&  <Alert errmsg={error}></Alert> } */}
+            {/* {error && alert("Failed to login")} */}
             <form onSubmit={handleSubmit} className="w-full lg:w-3/4">
               <div className="relative my-4">
                 <label for="name" className="leading-7 text-md text-white">

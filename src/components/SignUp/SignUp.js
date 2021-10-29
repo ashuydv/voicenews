@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import Alert from "../Alert/Alert";
+// import Alert from "../Alert/Alert";
 import suImg from "../../images/signup.png"
 
 
@@ -13,22 +13,20 @@ const SignUp = () => {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const { signup} = useAuth();
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory()
 
   async function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match");
+      alert("Please enter correct credentials. Password lenght should be greater than 5");
     }
     try {
-      setError("");
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
       history.push("/")
     } catch {
-      setError("Failed to create an account");
+      alert("Failed to create an account")
     }
     setLoading(false);
   }
@@ -40,7 +38,6 @@ const SignUp = () => {
             <img
               className="object-cover object-center rounded p-2 md:w-full"
               alt="hero"
-              // src="https://www.yeetum.com/assets/img/ai-trade.png"
               src={suImg}
             />
           </div>
@@ -48,7 +45,6 @@ const SignUp = () => {
             <h2 className="text-gray-900 text-2xl md:text-white lg:text-green mb-1 text-center   font-medium title-font">
               SIGN UP
             </h2>
-            {error &&  <Alert errmsg={error}></Alert> }
             <form onSubmit={handleSubmit} className="w-full lg:w-3/4">
               <div className="relative my-4">
                 <label for="name" className="leading-7 text-md text-white">
@@ -57,6 +53,7 @@ const SignUp = () => {
                 <input
                   type="email"
                   ref={emailRef}
+                  required
                   className="w-full bg-white rounded border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-900 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out mt-2"
                 />
               </div>
@@ -67,6 +64,7 @@ const SignUp = () => {
                 <input
                   type="password"
                   ref={passwordRef}
+                  required
                   className="w-full bg-white rounded border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-900 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out mt-2"
                 />
               </div>
@@ -76,6 +74,7 @@ const SignUp = () => {
                 </label>
                 <input
                   type="password"
+                  required
                   ref={passwordConfirmRef}
                   className="w-full bg-white rounded border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 text-base outline-none text-gray-900 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out mt-2"
                 />

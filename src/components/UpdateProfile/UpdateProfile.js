@@ -10,7 +10,6 @@ const UpdateProfile = () => {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const { currentUser, upEmail, upPassword } = useAuth();
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
@@ -23,7 +22,6 @@ const UpdateProfile = () => {
 
     const promises = [];
     setLoading(true);
-    setError("");
     if (emailRef.current.value !== currentUser.email) {
       promises.push(upEmail(emailRef.current.value));
     }

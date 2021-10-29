@@ -2,23 +2,18 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import Alert from "../Alert/Alert";
 import fpImg from "../../images/forgotPass.webp"
 
 
 const ForgotPassword = () => {
   const emailRef = useRef();
   const { resetPassword } = useAuth();
-  const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
 
-    setMessage("")
-      setError("");
       setLoading(true);
       await resetPassword(emailRef.current.value);
       // setMessage("Check your inbox for further instructions")

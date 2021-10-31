@@ -97,7 +97,7 @@ const HomePage = () => {
         <ul>
           <li className="stroke">
             <ScrollLink
-              className="nav-item mr-5 hover:bg-purple-500"
+              className="nav-item mr-5 hover:bg-purple-500 text-base"
               to="features"
               smooth={true}
               duration={100}
@@ -107,7 +107,7 @@ const HomePage = () => {
           </li>
           <li>
             <ScrollLink
-              className="nav-item mr-5 hover:bg-purple-500"
+              className="nav-item mr-5 hover:bg-purple-500 text-base"
               to="about"
               smooth={true}
               duration={150}
@@ -117,7 +117,7 @@ const HomePage = () => {
           </li>
           <li>
             <ScrollLink
-              className="nav-item mr-5 hover:bg-purple-500"
+              className="nav-item mr-5 hover:bg-purple-500 text-base"
               to="team"
               smooth={true}
               duration={200}
@@ -127,7 +127,7 @@ const HomePage = () => {
           </li>
           <li>
             <ScrollLink
-              className="nav-item mr-5 hover:bg-purple-500"
+              className="nav-item mr-5 hover:bg-purple-500 text-base"
               to="contact"
               smooth={true}
               duration={250}
@@ -137,14 +137,14 @@ const HomePage = () => {
           </li>
           <li>
             <Link to="/news-cards">
-              <button className="bg-purple-500 text-gray-200 font-semibold py-1 px-6 rounded inline-flex items-center">
-                <span className="mr-1">News App</span>
+              <button className="bg-purple-500 text-gray-200 font-semibold py-1 px-6 rounded inline-flex items-center text-lg">
+                <span className="mr-1">NewsApp</span>
               </button>
             </Link>
           </li>
           <li>
             <Link to="/update-profile">
-              <button className="bg-purple-500 text-gray-200 font-semibold py-1 px-6 rounded inline-flex items-center">
+              <button className="bg-purple-500 text-gray-200 font-semibold py-1 px-6 rounded inline-flex items-center text-lg">
                 <span title="Click to edit profile" className="mr-1">
                   <div className="flex items-center">
                     {currentUser.email}
@@ -335,7 +335,7 @@ const HomePage = () => {
                     <h2 class="title-font font-medium text-lg text-white">
                       Gaurav Patil
                     </h2>
-                    <h3 class="text-gray-500 mb-3">Developer</h3>
+                    <h3 class="text-gray-500 mb-3">Backend Developer</h3>
                     <p class="mb-4">
                       DIY tote bag drinking vinegar cronut adaptogen squid fanny
                       pack vaporware.
@@ -354,7 +354,7 @@ const HomePage = () => {
                     <h2 class="title-font font-medium text-lg text-white">
                       Vivek Lone
                     </h2>
-                    <h3 class="text-gray-500 mb-3">Designer</h3>
+                    <h3 class="text-gray-500 mb-3">Frontend Developer</h3>
                     <p class="mb-4">
                       DIY tote bag drinking vinegar cronut adaptogen squid fanny
                       pack vaporware.
@@ -373,7 +373,7 @@ const HomePage = () => {
                     <h2 class="title-font font-medium text-lg text-white">
                       Pratik Tayade
                     </h2>
-                    <h3 class="text-gray-500 mb-3">UI Developer</h3>
+                    <h3 class="text-gray-500 mb-3">Backend Developer</h3>
                     <p class="mb-4">
                       DIY tote bag drinking vinegar cronut adaptogen squid fanny
                       pack vaporware.
@@ -392,7 +392,7 @@ const HomePage = () => {
                     <h2 class="title-font font-medium text-lg text-white">
                       Ashutosh Yadav
                     </h2>
-                    <h3 class="text-gray-500 mb-3">Designer</h3>
+                    <h3 class="text-gray-500 mb-3">Full Stack Developer</h3>
                     <p class="mb-4">
                       DIY tote bag drinking vinegar cronut adaptogen squid fanny
                       pack vaporware.

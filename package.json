@@ -2,10 +2,6 @@
     "name": "alan_ai_news_application",
     "version": "0.1.0",
     "private": true,
-    "engines": {
-        "node": "16.13.0",
-        "npm": "8.1.1"
-    },
     "dependencies": {
         "@alan-ai/alan-sdk-web": "^1.8.28",
         "@craco/craco": "^6.3.0",
